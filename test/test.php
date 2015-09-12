@@ -8,8 +8,10 @@
 
  $funk = new Slashas\Slashas();
 
-$funk->setEnvChecker( new Slashas\DetectEnviroment());
+ $funk->setEnvChecker( new Slashas\DetectEnviroment() );
 
-if ($funk->envChecker->isCli()) {
-	echo "we are in cli!\n";
-}
+
+ $env = $funk->getEnv();
+
+ echo "we are in '$env'\n";
+

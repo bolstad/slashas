@@ -47,11 +47,9 @@ class Slashas {
 
 
 	 public function getEnv() {
-	 	echo "testar slack\n";
 	 	if ($this->isSlack()) {
 	 		return 'slack'; 
 	 	}
-	 	echo "noes";
 
 	 	if ($this->isHttp()) {
 	 		return 'http'; 	 		
