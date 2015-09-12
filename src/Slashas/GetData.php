@@ -18,7 +18,7 @@ class GetData {
 	public function setupFetcher() {
 
 		if ($this->env == 'slack') {
-#			$this->fetcher = new GetDataSlack();
+			$this->fetcher = new GetDataSlack();
 		}
 
 		if ($this->env == 'cli') {
