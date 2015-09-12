@@ -6,5 +6,4 @@
  use Slashas\Slashas;
 
 
-
  $funk = new Slashas\Slashas();
