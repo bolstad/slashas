@@ -1,7 +1,10 @@
-<?php namespace Slashas\Slashas;
+<?php 
 
 
-class src/Slashas/Slashas.php {
+namespace Slashas\Slashas;
+
+
+class DetectEnviroment {
 
 
 	/**
