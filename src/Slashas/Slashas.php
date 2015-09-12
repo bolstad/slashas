@@ -18,7 +18,7 @@ class Slashas {
 	 	}
 
 	 	if ( empty( $dataFetcher) ) {
-	        $dataFetcher = new getData();
+	        $dataFetcher = new GetData();
 	 	}
 
 
