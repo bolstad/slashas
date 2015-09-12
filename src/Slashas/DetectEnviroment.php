@@ -28,7 +28,7 @@ class DetectEnviroment {
    	if (isset($_GET) && !empty($_GET['action'])) {
 			return true; 
 		} else {
-			return $false;
+			return false;
 		}
 	}
 
