@@ -68,6 +68,17 @@ class Slashas {
 	 	$this->dataFetcher = $dataFetcher;
 	 }
 
+	 /** Get a variable from our GetData object 
+	  * @param string $name 
+	  * @return any
+	  */
+	 public function getVariable( $name) {
+	 	return $this->dataFetcher->getVariable( $name );
+	 }
+
+	 public function setDefaults( $data ) {
+	 	$this->dataFetcher->setDefaults( $data );
+	 }
 
 	 public function getEnv() {
 	 	if ($this->isSlack()) {
