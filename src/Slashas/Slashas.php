@@ -14,7 +14,7 @@ class Slashas {
  }
 
  public function isConsole() {
- 	return true; 
+ 	return $this->envChecker->isCli();
  }
 
  public function setEnvChecker( $envChecker ) {
