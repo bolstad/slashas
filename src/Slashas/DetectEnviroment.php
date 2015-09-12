@@ -25,7 +25,7 @@ class DetectEnviroment {
 	 */
 	function isHttp() {
 
-   	if (isset($_GET) && !empty($_GET['action'])) {
+   	if (isset($_SERVER) && !empty($_SERVER['SERVER_NAME'])) {
 			return true; 
 		} else {
 			return false;
