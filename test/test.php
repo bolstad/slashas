@@ -6,9 +6,7 @@
  use Slashas\Slashas;
 
 
- $funk = new Slashas\Slashas();
-
- $funk->setEnvChecker( new Slashas\DetectEnviroment() );
+ $funk = new Slashas\Slashas( new Slashas\DetectEnviroment());
 
 
  $env = $funk->getEnv();

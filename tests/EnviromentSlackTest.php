@@ -11,7 +11,6 @@ class EnviromentSlackTest extends PHPUnit_Framework_TestCase {
    * Test if we are running slack via mocked DetectEnviroment class
    */
   public function testMockedIsSlackTrue() {
-    $testo = new Slashas\Slashas;
 
     $stub = $this->getMockBuilder('DetectEnviroment')
                          ->setMethods(array('isSlack'))
@@ -19,7 +18,7 @@ class EnviromentSlackTest extends PHPUnit_Framework_TestCase {
 
     $stub->method('isSlack')->willReturn(true);
 
-  	$testo->setEnvChecker( $stub );
+    $testo = new Slashas\Slashas( $stub );
     $this->assertTrue($testo->isSlack());  	
   }
 
@@ -27,7 +26,6 @@ class EnviromentSlackTest extends PHPUnit_Framework_TestCase {
    * Test if we are running slack via mocked DetectEnviroment class
    */
   public function testMockedIsConsoleFalse() {
-    $testo = new Slashas\Slashas;
 
     $stub = $this->getMockBuilder('DetectEnviroment')
                          ->setMethods(array('isSlack'))
@@ -35,7 +33,7 @@ class EnviromentSlackTest extends PHPUnit_Framework_TestCase {
 
     $stub->method('isSlack')->willReturn(false);
 
-  	$testo->setEnvChecker( $stub );
+    $testo = new Slashas\Slashas( $stub );
     $this->assertFalse($testo->isSlack());  	
   }
 
@@ -44,13 +42,8 @@ class EnviromentSlackTest extends PHPUnit_Framework_TestCase {
    * Test if we are running slack via manipulated $_POST var
    */
 public function testSetEnvtIsSlackTrue() {
-    $testo = new Slashas\Slashas;
-
-    $env = new Slashas\DetectEnviroment;
-    $testo->setEnvChecker( $env );
-
-
     $_POST['token'] = time();
+    $testo = new Slashas\Slashas( new Slashas\DetectEnviroment );
     $this->assertTrue($testo->isSlack());   
     unset($_POST['token']);
 
@@ -60,12 +53,8 @@ public function testSetEnvtIsSlackTrue() {
    * Test if we are running slack via unsetted $_POST var
    */
   public function testSetEnvIsConsoleFalse() {
-    $testo = new Slashas\Slashas;
-
     unset($_POST['token']);
-    $env = new Slashas\DetectEnviroment;
-    $testo->setEnvChecker( $env );
-
+    $testo = new Slashas\Slashas( new Slashas\DetectEnviroment );
     $this->assertFalse($testo->isSlack());    
   }
 

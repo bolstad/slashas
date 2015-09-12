@@ -11,7 +11,12 @@ class Slashas {
 	 public $envChecker;
 	 
 
-	 public function __construct()  {
+	 public function __construct( $envChecker )  {
+	 	if ( !isset( $envChecker) ) {
+	        throw new SlashasException('You need to set $envChecker!');
+	 	}
+
+	 	$this->setEnvChecker( $envChecker );
 	 }
 
 

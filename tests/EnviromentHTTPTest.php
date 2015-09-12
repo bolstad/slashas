@@ -15,9 +15,8 @@ class EnviromentHTTPTest extends PHPUnit_Framework_TestCase {
                          ->getMock();
     $stub->method('isHttp')->willReturn(true);
 
-    $testo = new Slashas\Slashas;
-  	$testo->setEnvChecker( $stub );
-  
+    $testo = new Slashas\Slashas( $stub );
+
     $this->assertTrue($testo->isHttp());  	
   }
 
@@ -30,8 +29,7 @@ class EnviromentHTTPTest extends PHPUnit_Framework_TestCase {
                          ->getMock();
     $stub->method('isHttp')->willReturn(false);
 
-    $testo = new Slashas\Slashas;
-  	$testo->setEnvChecker( $stub );
+    $testo = new Slashas\Slashas( $stub );
 
     $this->assertFalse($testo->isHttp());  	
   }
@@ -41,11 +39,7 @@ class EnviromentHTTPTest extends PHPUnit_Framework_TestCase {
    */
   public function testSetEnvIsHTTPTrue() {
     $_SERVER['SERVER_NAME'] = time();
-    $env = new Slashas\DetectEnviroment;  
-
-    $testo = new Slashas\Slashas;
-    $testo->setEnvChecker( $env );
-
+    $testo = new Slashas\Slashas( new Slashas\DetectEnviroment );
     $this->assertTrue($testo->isHttp());    
     unset($_SERVER['SERVER_NAME']);
   }
@@ -55,11 +49,7 @@ class EnviromentHTTPTest extends PHPUnit_Framework_TestCase {
    */
   public function testSetEnvIsHTTPFalse() {
     unset($_SERVER['SERVER_NAME']);
-    $env = new Slashas\DetectEnviroment;
-
-    $testo = new Slashas\Slashas;
-    $testo->setEnvChecker( $env );
-
+    $testo = new Slashas\Slashas( new Slashas\DetectEnviroment );
     $this->assertFalse($testo->isHttp());   
   }
 
