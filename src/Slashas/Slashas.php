@@ -45,4 +45,25 @@ class Slashas {
 	 }
 
 
+
+	 public function getEnv() {
+	 	echo "testar slack\n";
+	 	if ($this->isSlack()) {
+	 		return 'slack'; 
+	 	}
+	 	echo "noes";
+
+	 	if ($this->isHttp()) {
+	 		return 'http'; 	 		
+	 	}
+
+	 	if ($this->isConsole()) {
+	 		return 'cli'; 
+	 	}
+
+        throw new SlashasException('Unindenfied enviroment ' . print_r($_SERVER) . print_r($_GET) . print_r($_POST));
+
+
+	 }
+
 }
