@@ -44,4 +44,12 @@ class DetectEnviroment {
 		return false; 
 		}
 	}
+
+
+
+
+
+
+
+
 }

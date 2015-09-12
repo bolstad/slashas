@@ -7,7 +7,10 @@ use Slashas\Slashas;
 class EnviromentSlackTest extends PHPUnit_Framework_TestCase {
  
 
-  public function testIsSlackTrue() {
+  /**
+   * Test if we are running slack via mocked DetectEnviroment class
+   */
+  public function testMockedIsSlackTrue() {
     $testo = new Slashas\Slashas;
 
     $stub = $this->getMockBuilder('DetectEnviroment')
@@ -20,8 +23,10 @@ class EnviromentSlackTest extends PHPUnit_Framework_TestCase {
     $this->assertTrue($testo->isSlack());  	
   }
 
-
-  public function testIsConsoleFalse() {
+  /**
+   * Test if we are running slack via mocked DetectEnviroment class
+   */
+  public function testMockedIsConsoleFalse() {
     $testo = new Slashas\Slashas;
 
     $stub = $this->getMockBuilder('DetectEnviroment')
@@ -32,6 +37,36 @@ class EnviromentSlackTest extends PHPUnit_Framework_TestCase {
 
   	$testo->setEnvChecker( $stub );
     $this->assertFalse($testo->isSlack());  	
+  }
+
+
+  /**
+   * Test if we are running slack via manipulated $_POST var
+   */
+public function testSetEnvtIsSlackTrue() {
+    $testo = new Slashas\Slashas;
+
+    $env = new Slashas\DetectEnviroment;
+    $testo->setEnvChecker( $env );
+
+
+    $_POST['token'] = time();
+    $this->assertTrue($testo->isSlack());   
+    unset($_POST['token']);
+
+  }
+
+  /**
+   * Test if we are running slack via unsetted $_POST var
+   */
+  public function testSetEnvIsConsoleFalse() {
+    $testo = new Slashas\Slashas;
+
+    unset($_POST['token']);
+    $env = new Slashas\DetectEnviroment;
+    $testo->setEnvChecker( $env );
+
+    $this->assertFalse($testo->isSlack());    
   }
 
 
