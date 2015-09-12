@@ -13,10 +13,12 @@ class EnviromentSlackTest extends PHPUnit_Framework_TestCase {
   public function testMockedIsSlackTrue() {
 
     $stub = $this->getMockBuilder('DetectEnviroment')
-                         ->setMethods(array('isSlack'))
+                         ->setMethods(array('isCli','isSlack','isHttp'))
                          ->getMock();
 
     $stub->method('isSlack')->willReturn(true);
+    $stub->method('isCli')->willReturn(true);
+    $stub->method('isHttp')->willReturn(true);
 
     $testo = new Slashas\Slashas( $stub );
     $this->assertTrue($testo->isSlack());  	
@@ -28,10 +30,12 @@ class EnviromentSlackTest extends PHPUnit_Framework_TestCase {
   public function testMockedIsConsoleFalse() {
 
     $stub = $this->getMockBuilder('DetectEnviroment')
-                         ->setMethods(array('isSlack'))
+                         ->setMethods(array('isCli','isSlack','isHttp'))
                          ->getMock();
 
     $stub->method('isSlack')->willReturn(false);
+    $stub->method('isCli')->willReturn(true);
+    $stub->method('isHttp')->willReturn(true);
 
     $testo = new Slashas\Slashas( $stub );
     $this->assertFalse($testo->isSlack());  	

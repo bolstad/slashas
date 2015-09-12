@@ -11,9 +11,11 @@ class EnviromentHTTPTest extends PHPUnit_Framework_TestCase {
    */
   public function testMockedIsHTTPTrue() {
     $stub = $this->getMockBuilder('DetectEnviroment')
-                         ->setMethods(array('isHttp'))
+                         ->setMethods(array('isCli','isSlack','isHttp'))
                          ->getMock();
-    $stub->method('isHttp')->willReturn(true);
+    $stub->method('isHttp')->willReturn( true );
+    $stub->method('isSlack')->willReturn( false );
+    $stub->method('isCli')->willReturn( false) ;
 
     $testo = new Slashas\Slashas( $stub );
 
@@ -25,9 +27,12 @@ class EnviromentHTTPTest extends PHPUnit_Framework_TestCase {
    */
   public function testMockedIsHTTPFalse() {
     $stub = $this->getMockBuilder('DetectEnviroment')
-                         ->setMethods(array('isHttp'))
+                         ->setMethods(array('isCli','isSlack','isHttp'))
                          ->getMock();
-    $stub->method('isHttp')->willReturn(false);
+
+    $stub->method('isHttp')->willReturn( false );
+    $stub->method('isSlack')->willReturn( false );
+    $stub->method('isCli')->willReturn( true );
 
     $testo = new Slashas\Slashas( $stub );
 

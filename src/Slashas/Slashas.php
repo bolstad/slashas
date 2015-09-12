@@ -9,14 +9,25 @@ class Slashas {
 	 @var object
 	**/
 	 public $envChecker;
-	 
+	 public $dataFetcher; 
 
-	 public function __construct( $envChecker )  {
-	 	if ( !isset( $envChecker) ) {
-	        throw new SlashasException('You need to set $envChecker!');
+	 public function __construct( $envChecker = '', $dataFetcher = '')  {
+
+	 	if ( empty( $envChecker) ) {
+	        $envChecker = new DetectEnviroment();
 	 	}
 
+	 	if ( empty( $dataFetcher) ) {
+	        $dataFetcher = new getData();
+	 	}
+
+
 	 	$this->setEnvChecker( $envChecker );
+	 	$this->setDataFetcher( $dataFetcher );
+
+
+	 	$this->dataFetcher->setEnv( $this->getEnv());
+
 	 }
 
 
@@ -49,6 +60,13 @@ class Slashas {
 	 	$this->envChecker = $envChecker;
 	 }
 
+	 /**
+	  * Set our DataFetcher object 
+	  * @param GetData 
+	  */
+	 public function setDataFetcher( $dataFetcher ) {
+	 	$this->dataFetcher = $dataFetcher;
+	 }
 
 
 	 public function getEnv() {
