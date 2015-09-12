@@ -6,54 +6,59 @@ use Slashas\Slashas;
  
 class EnviromentHTTPTest extends PHPUnit_Framework_TestCase {
   
-
+  /**
+   * Test if we are running slack via mocked DetectEnviroment class
+   */
   public function testMockedIsHTTPTrue() {
-    $testo = new Slashas\Slashas;
-
     $stub = $this->getMockBuilder('DetectEnviroment')
                          ->setMethods(array('isHttp'))
                          ->getMock();
-
     $stub->method('isHttp')->willReturn(true);
 
-	$testo->setEnvChecker( $stub );
+    $testo = new Slashas\Slashas;
+  	$testo->setEnvChecker( $stub );
+  
     $this->assertTrue($testo->isHttp());  	
   }
 
-
+  /**
+   * Test if we are running slack via mocked DetectEnviroment class
+   */
   public function testMockedIsHTTPFalse() {
-    $testo = new Slashas\Slashas;
-
     $stub = $this->getMockBuilder('DetectEnviroment')
                          ->setMethods(array('isHttp'))
                          ->getMock();
-
     $stub->method('isHttp')->willReturn(false);
 
-	$testo->setEnvChecker( $stub );
+    $testo = new Slashas\Slashas;
+  	$testo->setEnvChecker( $stub );
+
     $this->assertFalse($testo->isHttp());  	
   }
 
+  /**
+   * Test if we are running slack via manipulated $_GET var
+   */
   public function testSetEnvIsHTTPTrue() {
-    $testo = new Slashas\Slashas;
+    $_GET['action'] = time();
+    $env = new Slashas\DetectEnviroment;  
 
-    $env = new Slashas\DetectEnviroment;
+    $testo = new Slashas\Slashas;
     $testo->setEnvChecker( $env );
 
-    $_GET['action'] = time();
-
     $this->assertTrue($testo->isHttp());    
-
     unset($_GET['action']);
   }
 
-
+  /**
+   * Test if we are running slack via unsetted $_GET var
+   */
   public function testSetEnvIsHTTPFalse() {
-    $testo = new Slashas\Slashas;
-
+    unset($_GET['action']);
     $env = new Slashas\DetectEnviroment;
-    $testo->setEnvChecker( $env );
 
+    $testo = new Slashas\Slashas;
+    $testo->setEnvChecker( $env );
 
     $this->assertFalse($testo->isHttp());   
   }
