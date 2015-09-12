@@ -17,6 +17,10 @@ class Slashas {
  	return $this->envChecker->isCli();
  }
 
+ public function isSlack() {
+ 	return $this->envChecker->isSlack(); 	
+ }
+
  public function setEnvChecker( $envChecker ) {
  	$this->envChecker = $envChecker;
  }

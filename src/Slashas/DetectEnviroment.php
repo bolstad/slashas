@@ -10,4 +10,19 @@ class DetectEnviroment {
 		else
 			return false; 
 	}
+
+
+
+	function isHttp() {
+
+	}
+
+
+	function isSlack() {
+
+	if (isset($_POST) && !empty($_POST['token'])) {
+			return true;
+		} else
+		return false; 
+	}
 }
