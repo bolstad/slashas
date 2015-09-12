@@ -40,21 +40,21 @@ class EnviromentHTTPTest extends PHPUnit_Framework_TestCase {
    * Test if we are running slack via manipulated $_GET var
    */
   public function testSetEnvIsHTTPTrue() {
-    $_GET['action'] = time();
+    $_SERVER['SERVER_NAME'] = time();
     $env = new Slashas\DetectEnviroment;  
 
     $testo = new Slashas\Slashas;
     $testo->setEnvChecker( $env );
 
     $this->assertTrue($testo->isHttp());    
-    unset($_GET['action']);
+    unset($_SERVER['SERVER_NAME']);
   }
 
   /**
    * Test if we are running slack via unsetted $_GET var
    */
   public function testSetEnvIsHTTPFalse() {
-    unset($_GET['action']);
+    unset($_SERVER['SERVER_NAME']);
     $env = new Slashas\DetectEnviroment;
 
     $testo = new Slashas\Slashas;
