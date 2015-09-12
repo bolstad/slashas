@@ -1,6 +1,6 @@
 ## Slashas 
 
-Slashas is a PHP library for simple Slack integrations. 
+Slashas is a PHP library for simple Slack integrations using "outgoing webhooks".
 
 ## Installation 
 
