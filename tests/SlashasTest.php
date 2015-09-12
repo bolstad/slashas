@@ -12,4 +12,11 @@ class SlashasTest extends PHPUnit_Framework_TestCase {
     $this->assertTrue($testo->hasOk());
   }
  
+
+  public function testIsConsoleTrue() {
+    $testo = new Slashas\Slashas;
+    $this->assertTrue($testo->isConsole());  	
+  }
+
+
 }
